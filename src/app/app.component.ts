@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cypress-angular-test';
+  text = 'not clicked';
+
+  clicked() {
+    this.text = 'clicked!';
+  }
 }
