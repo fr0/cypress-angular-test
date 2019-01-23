@@ -1,22 +1,15 @@
-function timer(duration) {
-  return new Promise(accept => {
-    setInterval(() => {
-      accept();
-    }, duration);
-  });
-}
+/// <reference types="Cypress" />
 
 describe('tests', function () {
-  beforeEach(done => {
-    timer(1000).then(() => {
-      cy.visit('/').then(() => {
-        done();
-      });
-    });
-  });
-  it('can click the button', () => {
+  beforeEach(() => {
     cy.visit('/');
-    cy.get('button.clickme').click();  // adding {force: true} here makes this work!
+  });
+  it.only('can click the button', () => {
+    cy.visit('/');
+    cy.get('button.clickme').click();
     cy.get('.text').should('have.text', 'clicked!');
+    cy.get('button').then($el => {
+      expect($el).to.have.class('clickme');
+    });
   });
 });
